@@ -9,15 +9,21 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class VertexModel implements Observer{
-  private final StringProperty label;
-  private final DoubleProperty x;
-  private final DoubleProperty y;
+  private final StringProperty label= new SimpleStringProperty();
+  private final DoubleProperty x=new SimpleDoubleProperty();
+  private final DoubleProperty y= new SimpleDoubleProperty();
+  
+  private Vertex v;
 
   public VertexModel(Vertex v) {
-    this.label = new SimpleStringProperty(v.getLabel());
-    this.x = new SimpleDoubleProperty(v.getX());
-    this.y = new SimpleDoubleProperty(v.getY());
+    reloadFromModel();
     v.addObserver(this);
+  }
+
+  private void reloadFromModel() {
+    this.label.setValue(v.getLabel());
+    this.x.setValue(v.getX());
+    this.y.setValue(v.getY());
   }
 
   public String getLabel() {
@@ -58,10 +64,7 @@ public class VertexModel implements Observer{
 
   @Override
   public void update(Observable o, Object arg) {
-    Vertex v = (Vertex)o;
-    this.label.set(v.getLabel());
-    this.x.set(v.getX());
-    this.y.set(v.getY());
+    reloadFromModel();
   }
 
 }
