@@ -17,7 +17,7 @@ public class Main extends Application {
 
     try {
       // Load FXML file
-      String fxmlSource = "/application/view/Application.fxml";
+      String fxmlSource = "/application/view/GraphView.fxml";
       FXMLLoader loader = new FXMLLoader();
       AnchorPane root = (AnchorPane) loader
           .load(getClass().getResourceAsStream(fxmlSource));

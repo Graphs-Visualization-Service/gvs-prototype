@@ -7,8 +7,9 @@ import application.model.Vertex;
 
 public class Importer {
 
+  private static Graph<Vertex, Edge> graph = new Graph<>();
+
   public static final Graph<Vertex, Edge> importGraph() {
-    Graph<Vertex, Edge> graph = new Graph<>();
 
     Vertex vertex1 = new Vertex();
     vertex1.setX(20);
@@ -41,6 +42,13 @@ public class Importer {
     graph.addEdge(new Edge(pair4));
 
     return graph;
+  }
+  
+  public static final void updateGraph() {
+    graph.getVertices().forEach(v -> {
+      v.setX(v.getX() * 5);
+      v.setY(v.getY() * 5);
+    });
   }
 
 }
